@@ -6,13 +6,17 @@
     <title>Stygar</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
-      <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&family=Comfortaa:wght@400;500;600;700&family=Poppins:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
     <!-- Font Awesome 6.4.0 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <style>
       *,
       *::before,
@@ -491,6 +495,672 @@
         }
       }
 
+      /* ============================================
+         SHARED PAGE BACKGROUND WRAPPER
+         #services, #journey and #achievements live inside
+         this, so there is no seam/line between them.
+         ============================================ */
+      .page-bg {
+        position: relative;
+        background:
+          radial-gradient(
+            ellipse 70% 60% at 85% 90%,
+            rgba(150, 14, 26, 0.55) 0%,
+            rgba(15, 11, 12, 0) 70%
+          ),
+          radial-gradient(
+            ellipse 55% 50% at 95% 5%,
+            rgba(120, 12, 20, 0.4) 0%,
+            rgba(15, 11, 12, 0) 70%
+          ),
+          radial-gradient(
+            ellipse 45% 45% at 0% 50%,
+            rgba(90, 10, 16, 0.25) 0%,
+            rgba(15, 11, 12, 0) 70%
+          ),
+          linear-gradient(135deg, #0e0b0c 0%, #150e10 50%, #1a0d10 100%);
+      }
+
+      /* ============================================
+         SERVICES (#services)
+         ============================================ */
+      .projects {
+        --p-pad: clamp(20px, 3.1vw, 40px);
+        --line: rgba(255, 255, 255, 0.28);
+        position: relative;
+        padding: clamp(60px, 7vw, 90px) var(--p-pad) clamp(40px, 5vw, 60px);
+        font-family: "Poppins", sans-serif;
+        background: transparent; /* <-- inherit from .page-bg */
+      }
+      .projects .wrap {
+        max-width: 1240px;
+        margin: 0 auto;
+      }
+      .projects .head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 24px;
+        margin-bottom: clamp(28px, 3.9vw, 40px);
+      }
+      .projects .title {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+      }
+      .projects .title h2 {
+        font-family: "Comfortaa", sans-serif;
+        font-weight: 500;
+        font-size: clamp(30px, 4vw, 37px);
+        line-height: 1.1;
+        letter-spacing: 0.3px;
+      }
+      .projects .dots {
+        width: 26px;
+        height: auto;
+        fill: var(--red);
+        flex: none;
+        margin-top: 4px;
+      }
+      .projects .intro {
+        margin-top: 14px;
+        max-width: 410px;
+        font-size: 13px;
+        line-height: 1.55;
+        font-weight: 300;
+        color: var(--muted);
+      }
+      .projects .btn-all {
+        flex: none;
+        margin-top: 2px;
+        width: 118px;
+        height: 40px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: transparent;
+        color: #fff;
+        font-family: "Poppins", sans-serif;
+        font-size: 14px;
+        font-weight: 300;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          background 0.25s,
+          border-color 0.25s;
+      }
+      .projects .btn-all:hover {
+        background: var(--red);
+        border-color: var(--red);
+      }
+      .projects .grid {
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: clamp(20px, 3vw, 36px);
+        row-gap: 24px;
+        grid-auto-rows: 1fr;
+      }
+      .projects .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: 24px 22px 26px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.07) 0%,
+          rgba(255, 255, 255, 0.03) 100%
+        );
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        transition:
+          border-color 0.25s,
+          transform 0.25s,
+          box-shadow 0.25s;
+      }
+      .projects .card:hover,
+      .projects .card:focus-visible {
+        border-color: var(--red);
+        transform: translateY(-4px);
+        box-shadow: 0 14px 34px rgba(209, 15, 28, 0.18);
+      }
+      .projects .card:focus-visible {
+        outline: 2px solid var(--red);
+        outline-offset: 3px;
+      }
+      .projects .icon {
+        width: 54px;
+        height: 54px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        color: var(--red);
+        background: rgba(209, 15, 28, 0.14);
+        border: 1px solid rgba(209, 15, 28, 0.5);
+        transition:
+          background 0.25s,
+          color 0.25s;
+      }
+      .projects .card:hover .icon,
+      .projects .card:focus-visible .icon {
+        background: var(--red);
+        color: #fff;
+      }
+      .projects .card h3 {
+        margin-top: 20px;
+        font-family: "Comfortaa", sans-serif;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 1.3;
+        letter-spacing: 0.2px;
+      }
+      .projects .card p {
+        margin-top: 10px;
+        font-size: 13px;
+        line-height: 1.6;
+        font-weight: 300;
+        color: var(--muted);
+      }
+      .projects .feats {
+        list-style: none;
+        margin-top: 16px;
+        display: grid;
+        gap: 8px;
+      }
+      .projects .feats li {
+        position: relative;
+        padding-left: 18px;
+        font-size: 12.5px;
+        line-height: 1.5;
+        font-weight: 300;
+        color: #f1eded;
+      }
+      .projects .feats li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 7px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--red);
+      }
+
+      @media (max-width: 900px) {
+        .projects .grid {
+          grid-template-columns: repeat(2, 1fr);
+          column-gap: clamp(20px, 6vw, 48px);
+        }
+      }
+      @media (max-width: 560px) {
+        .projects .head {
+          flex-direction: column;
+          gap: 16px;
+        }
+        .projects .btn-all {
+          margin-top: 0;
+        }
+        .projects .grid {
+          grid-template-columns: 1fr;
+          row-gap: 20px;
+        }
+        .projects .title {
+          gap: 20px;
+        }
+      }
+
+      /* ============================================
+         OUR JOURNEY (#journey)
+         No background here — it inherits from .page-bg,
+         so there is no visible seam between sections.
+         ============================================ */
+      .journey {
+        position: relative;
+        padding: clamp(60px, 7vw, 90px) clamp(20px, 3.1vw, 40px);
+        font-family: "Poppins", sans-serif;
+        background: transparent; /* <-- KEY FIX */
+      }
+      .journey .wrap {
+        max-width: 1240px;
+        margin: 0 auto;
+        container-type: inline-size;
+      }
+      .journey .j-head,
+      .journey .j-steps {
+        --u: calc(100cqw / 1600);
+      }
+
+      .journey .j-title {
+        display: flex;
+        align-items: center;
+        gap: max(12px, calc(15 * var(--u)));
+      }
+      .journey .j-title h2 {
+        font-family: "Comfortaa", sans-serif;
+        font-weight: 500;
+        font-size: max(30px, calc(52 * var(--u)));
+        line-height: 1.1;
+        letter-spacing: 0.3px;
+      }
+      .journey .j-dots {
+        width: max(30px, calc(45 * var(--u)));
+        height: auto;
+        fill: var(--red);
+        flex: none;
+      }
+      .journey .j-intro {
+        margin-top: calc(20 * var(--u));
+        max-width: calc(700 * var(--u));
+        font-size: max(13px, calc(17 * var(--u)));
+        line-height: 1.6;
+        font-weight: 300;
+        color: var(--muted);
+      }
+      .journey .j-steps {
+        position: relative;
+        margin-top: calc(15 * var(--u));
+        aspect-ratio: 1450 / 400;
+      }
+      .journey .j-path {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+        pointer-events: none;
+      }
+      .journey .j-step {
+        position: absolute;
+        display: flex;
+        align-items: flex-start;
+        gap: calc(21 * var(--u));
+      }
+      .journey .s1 {
+        left: 0.14%;
+        top: 14%;
+      }
+      .journey .s2 {
+        left: 41.72%;
+        top: 14%;
+      }
+      .journey .s3 {
+        left: 22.48%;
+        top: 60.25%;
+      }
+      .journey .s4 {
+        left: 64.07%;
+        top: 60.25%;
+      }
+      .journey .j-num {
+        position: relative;
+        flex: none;
+        width: calc(58 * var(--u));
+        height: calc(58 * var(--u));
+        min-width: 40px;
+        min-height: 40px;
+        border: 1px solid var(--red);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Comfortaa", sans-serif;
+        font-weight: 500;
+        font-size: max(18px, calc(30 * var(--u)));
+        color: var(--red);
+      }
+      .journey .j-num i {
+        position: absolute;
+        width: max(4px, calc(6 * var(--u)));
+        height: max(4px, calc(6 * var(--u)));
+        border-radius: 50%;
+        background: var(--red);
+      }
+      .journey .j-num i:nth-child(1) {
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%);
+      }
+      .journey .j-num i:nth-child(2) {
+        top: 0;
+        right: 0;
+        transform: translate(50%, -50%);
+      }
+      .journey .j-num i:nth-child(3) {
+        bottom: 0;
+        left: 0;
+        transform: translate(-50%, 50%);
+      }
+      .journey .j-num i:nth-child(4) {
+        bottom: 0;
+        right: 0;
+        transform: translate(50%, 50%);
+      }
+      .journey .j-txt {
+        width: calc(395 * var(--u));
+      }
+      .journey .j-txt h3 {
+        font-family: "Comfortaa", sans-serif;
+        font-weight: 400;
+        font-size: max(15px, calc(22 * var(--u)));
+        line-height: 1.2;
+        color: #fff;
+      }
+      .journey .j-txt p {
+        margin-top: calc(14 * var(--u));
+        font-size: max(12px, calc(17 * var(--u)));
+        line-height: 1.6;
+        font-weight: 300;
+        color: var(--muted);
+      }
+      @media (max-width: 1000px) {
+        .journey .j-head,
+        .journey .j-steps {
+          --u: 0.72px;
+        }
+        .journey .j-steps {
+          aspect-ratio: auto;
+          display: flex;
+          flex-direction: column;
+          gap: 32px;
+          margin-top: 32px;
+        }
+        .journey .j-path {
+          display: none;
+        }
+        .journey .j-step {
+          position: static;
+        }
+        .journey .j-txt {
+          width: auto;
+        }
+      }
+
+      /* ============================================
+         OUR ACHIEVEMENTS (#achievements)
+         Transparent background: inherits .page-bg.
+         Everything scales with --u (1 unit = 1px of the
+         1700px-wide reference design).
+         ============================================ */
+      .achievements {
+        position: relative;
+        padding: clamp(60px, 7vw, 90px) clamp(20px, 3.1vw, 40px);
+        font-family: "Poppins", sans-serif;
+        background: transparent;
+      }
+      .achievements .wrap {
+        max-width: 1240px;
+        margin: 0 auto;
+        container-type: inline-size;
+      }
+      .achievements .a-stage {
+        --u: calc(100cqw / 1700);
+        position: relative;
+        aspect-ratio: 1700 / 620;
+      }
+
+      /* heading */
+      .achievements .a-head {
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: flex;
+        align-items: center;
+        gap: max(12px, calc(20 * var(--u)));
+      }
+      .achievements .a-head h2 {
+        font-family: "Comfortaa", sans-serif;
+        font-weight: 500;
+        font-size: max(30px, calc(70 * var(--u)));
+        line-height: 1.1;
+        letter-spacing: 0.3px;
+        white-space: nowrap;
+      }
+      .achievements .a-head .a-hdots {
+        width: max(30px, calc(52 * var(--u)));
+        height: auto;
+        fill: var(--red);
+        flex: none;
+      }
+
+      /* big 20 / 25 */
+      .achievements .a-years {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+      .achievements .a-num {
+        position: absolute;
+        font-family: "Comfortaa", sans-serif;
+        font-weight: 700;
+        font-size: calc(230 * var(--u));
+        line-height: 1;
+        letter-spacing: 0;
+        color: transparent;
+        background: linear-gradient(
+          180deg,
+          #cf121e 0%,
+          #8a0d16 55%,
+          #4d0910 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+      }
+      .achievements .n1 {
+        left: 3.29%;
+        top: 22.6%;
+      }
+      .achievements .n2 {
+        left: 18.94%;
+        top: 62.9%;
+      }
+      .achievements .a-dots {
+        position: absolute;
+        fill: var(--red);
+        height: auto;
+      }
+      .achievements .d1 {
+        left: 21%;
+        top: 34.03%;
+        width: calc(112.5 * var(--u));
+      }
+      .achievements .d2 {
+        left: 11.06%;
+        top: 74.35%;
+        width: calc(112.5 * var(--u));
+      }
+
+      /* intro */
+      .achievements .a-intro {
+        position: absolute;
+        left: 50.47%;
+        top: 1.94%;
+        max-width: calc(820 * var(--u));
+        font-size: max(13px, calc(20 * var(--u)));
+        line-height: 1.6;
+        font-weight: 300;
+        color: var(--muted);
+      }
+
+      /* list */
+      .achievements .a-list {
+        position: absolute;
+        inset: 0;
+        list-style: none;
+      }
+      .achievements .a-item {
+        position: absolute;
+        left: 50.47%;
+        display: flex;
+        align-items: center;
+        gap: calc(26 * var(--u));
+      }
+      .achievements .i1 {
+        top: 25.16%;
+        align-items: flex-start;
+      }
+      .achievements .i2 {
+        top: 49.35%;
+      }
+      .achievements .i3 {
+        top: 67.58%;
+      }
+      .achievements .i4 {
+        top: 85.81%;
+      }
+
+      .achievements .a-box {
+        position: relative;
+        flex: none;
+        width: calc(68 * var(--u));
+        height: calc(68 * var(--u));
+        min-width: 42px;
+        min-height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px dashed rgba(255, 255, 255, 0.4);
+        font-family: "Comfortaa", sans-serif;
+        font-weight: 500;
+        font-size: max(20px, calc(38 * var(--u)));
+        color: #fff;
+      }
+      .achievements .a-box i {
+        position: absolute;
+        width: max(5px, calc(8 * var(--u)));
+        height: max(5px, calc(8 * var(--u)));
+        border-radius: 50%;
+        background: #fff;
+      }
+      .achievements .a-box i:nth-child(1) {
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%);
+      }
+      .achievements .a-box i:nth-child(2) {
+        top: 0;
+        right: 0;
+        transform: translate(50%, -50%);
+      }
+      .achievements .a-box i:nth-child(3) {
+        bottom: 0;
+        left: 0;
+        transform: translate(-50%, 50%);
+      }
+      .achievements .a-box i:nth-child(4) {
+        bottom: 0;
+        right: 0;
+        transform: translate(50%, 50%);
+      }
+
+      /* active (red) item */
+      .achievements .a-item.active .a-box {
+        border: 1px solid var(--red);
+        color: var(--red);
+      }
+      .achievements .a-item.active .a-box i {
+        background: var(--red);
+      }
+
+      .achievements .a-item h3 {
+        font-family: "Comfortaa", sans-serif;
+        font-weight: 400;
+        font-size: max(16px, calc(33 * var(--u)));
+        line-height: 1.2;
+        color: #fff;
+      }
+      .achievements .a-item.active .a-txt {
+        margin-top: calc(-5 * var(--u));
+      }
+      .achievements .a-item.active h3 {
+        font-size: max(15px, calc(27 * var(--u)));
+      }
+      .achievements .a-item p {
+        margin-top: calc(18 * var(--u));
+        max-width: calc(560 * var(--u));
+        font-size: max(12px, calc(19 * var(--u)));
+        line-height: 1.7;
+        font-weight: 300;
+        color: var(--muted);
+      }
+
+      /* Tablet / mobile: stack everything */
+      @media (max-width: 1000px) {
+  .achievements {
+    overflow-x: clip;
+  }
+  .achievements .a-stage {
+    --u: 0.6px;
+    aspect-ratio: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    min-width: 0;
+  }
+  .achievements .a-head,
+  .achievements .a-years,
+  .achievements .a-intro,
+  .achievements .a-list,
+  .achievements .a-item {
+    position: static;
+  }
+  .achievements .a-head {
+    flex-wrap: wrap;
+    gap: 14px;
+    max-width: 100%;
+  }
+  .achievements .a-head h2 {
+    white-space: normal;
+    font-size: clamp(28px, 7.5vw, 42px);
+    overflow-wrap: break-word;
+    min-width: 0;
+  }
+  .achievements .a-head .a-hdots {
+    width: clamp(26px, 6vw, 36px);
+  }
+  .achievements .a-years {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    max-width: 100%;
+  }
+  .achievements .a-num {
+    position: static;
+    font-size: clamp(70px, 22vw, 140px);
+  }
+  .achievements .a-dots {
+    display: none;
+  }
+  .achievements .a-intro {
+    max-width: 520px;
+  }
+  .achievements .a-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .achievements .a-item {
+    max-width: 100%;
+  }
+  .achievements .a-txt {
+    min-width: 0;
+  }
+  .achievements .a-item h3 {
+    font-size: clamp(16px, 4.6vw, 22px);
+    overflow-wrap: break-word;
+  }
+  .achievements .a-item.active h3 {
+    font-size: clamp(16px, 4.6vw, 22px);
+  }
+  .achievements .a-item p {
+    max-width: 520px;
+    font-size: 13px;
+  }
+}
+
       /* RESPONSIVE */
       @media (max-width: 1024px) {
         .nav-links {
@@ -698,7 +1368,9 @@
             Into Reality
           </h1>
           <p class="desc">
-            JBIWEBX designs and ships custom web applications, content management systems, and CRM platforms built around how your team actually works, not a template it has to work around.
+            JBIWEBX designs and ships custom web applications, content
+            management systems, and CRM platforms built around how your team
+            actually works, not a template it has to work around.
           </p>
           <div class="actions">
             <a href="#contact" class="btn btn-main">Start a Project</a>
@@ -757,6 +1429,343 @@
       </div>
     </section>
 
+    <!-- ============================================
+         Shared background wrapper for Services + Journey + Achievements
+         Fixes the ugly seam/line between the sections.
+         ============================================ -->
+    <div class="page-bg">
+      <section class="projects" id="services" aria-labelledby="projects-title">
+        <div class="wrap">
+          <header class="head">
+            <div>
+              <div class="title">
+                <h2 id="projects-title">Our Services</h2>
+                <svg class="dots" viewBox="0 0 32 26" aria-hidden="true">
+                  <circle cx="6" cy="3" r="2.6" />
+                  <circle cx="14" cy="3" r="2.6" />
+                  <circle cx="22" cy="3" r="2.6" />
+                  <circle cx="3" cy="11" r="2.6" />
+                  <circle cx="11" cy="11" r="2.6" />
+                  <circle cx="19" cy="11" r="2.6" />
+                  <circle cx="27" cy="11" r="2.6" />
+                  <circle cx="6" cy="19" r="2.6" />
+                  <circle cx="14" cy="19" r="2.6" />
+                  <circle cx="22" cy="19" r="2.6" />
+                </svg>
+              </div>
+              <p class="intro">
+                From content management systems to CRM platforms, online stores
+                and inventory tools, we build the software your team uses every
+                day, shaped around how you actually work.
+              </p>
+            </div>
+            <a href="#contact" class="btn-all">Get a Quote</a>
+          </header>
+
+          <ul class="grid">
+            <li>
+              <a href="#contact" class="card"
+                ><span class="icon" aria-hidden="true"
+                  ><i class="fa-solid fa-newspaper"></i
+                ></span>
+                <h3>CMS Development</h3>
+                <p>Easy-to-manage content systems built for your team.</p>
+                <ul class="feats">
+                  <li>Custom admin panel</li>
+                  <li>Easy content editing</li>
+                  <li>SEO-ready pages</li>
+                </ul></a
+              >
+            </li>
+            <li>
+              <a href="#contact" class="card"
+                ><span class="icon" aria-hidden="true"
+                  ><i class="fa-solid fa-users-gear"></i
+                ></span>
+                <h3>CRM Development</h3>
+                <p>Track leads, clients and deals in one place.</p>
+                <ul class="feats">
+                  <li>Lead &amp; deal tracking</li>
+                  <li>Team dashboards</li>
+                  <li>Reports &amp; automation</li>
+                </ul></a
+              >
+            </li>
+            <li>
+              <a href="#contact" class="card"
+                ><span class="icon" aria-hidden="true"
+                  ><i class="fa-solid fa-cart-shopping"></i
+                ></span>
+                <h3>E-commerce Development</h3>
+                <p>Online stores built to sell, from catalog to checkout.</p>
+                <ul class="feats">
+                  <li>Product &amp; order management</li>
+                  <li>Secure checkout</li>
+                  <li>Fast, mobile-first design</li>
+                </ul></a
+              >
+            </li>
+            <li>
+              <a href="#contact" class="card"
+                ><span class="icon" aria-hidden="true"
+                  ><i class="fa-solid fa-bag-shopping"></i
+                ></span>
+                <h3>Shopify Development</h3>
+                <p>Custom Shopify stores, themes and app integrations.</p>
+                <ul class="feats">
+                  <li>Custom themes</li>
+                  <li>App integrations</li>
+                  <li>Store setup &amp; migration</li>
+                </ul></a
+              >
+            </li>
+            <li>
+              <a href="#contact" class="card"
+                ><span class="icon" aria-hidden="true"
+                  ><i class="fa-solid fa-boxes-stacked"></i
+                ></span>
+                <h3>Inventory System</h3>
+                <p>Stock, orders and suppliers tracked in real time.</p>
+                <ul class="feats">
+                  <li>Real-time stock tracking</li>
+                  <li>Supplier &amp; purchase orders</li>
+                  <li>Barcode &amp; low-stock alerts</li>
+                </ul></a
+              >
+            </li>
+            <li>
+              <a href="#contact" class="card"
+                ><span class="icon" aria-hidden="true"
+                  ><i class="fa-solid fa-laptop-code"></i
+                ></span>
+                <h3>Custom Web Apps</h3>
+                <p>Web applications shaped around how you work.</p>
+                <ul class="feats">
+                  <li>Built around your workflow</li>
+                  <li>Role-based access</li>
+                  <li>Scalable architecture</li>
+                </ul></a
+              >
+            </li>
+            <li>
+              <a href="#contact" class="card"
+                ><span class="icon" aria-hidden="true"
+                  ><i class="fa-solid fa-plug"></i
+                ></span>
+                <h3>API &amp; Payment Integration</h3>
+                <p>Connect your systems with the tools you already use.</p>
+                <ul class="feats">
+                  <li>Payment gateways</li>
+                  <li>Third-party APIs</li>
+                  <li>Data sync &amp; webhooks</li>
+                </ul></a
+              >
+            </li>
+            <li>
+              <a href="#contact" class="card"
+                ><span class="icon" aria-hidden="true"
+                  ><i class="fa-solid fa-cash-register"></i
+                ></span>
+                <h3>POS &amp; Billing System</h3>
+                <p>Sales, invoices and receipts across every branch.</p>
+                <ul class="feats">
+                  <li>Sales &amp; invoicing</li>
+                  <li>Multi-branch support</li>
+                  <li>Receipts &amp; reports</li>
+                </ul></a
+              >
+            </li>
+            <li>
+              <a href="#contact" class="card"
+                ><span class="icon" aria-hidden="true"
+                  ><i class="fa-solid fa-headset"></i
+                ></span>
+                <h3>Maintenance &amp; Support</h3>
+                <p>We keep your software fast, secure and up to date.</p>
+                <ul class="feats">
+                  <li>Updates &amp; bug fixes</li>
+                  <li>Hosting &amp; backups</li>
+                  <li>24/7 support</li>
+                </ul></a
+              >
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="journey" id="journey" aria-labelledby="journey-title">
+        <div class="wrap">
+          <header class="j-head">
+            <div class="j-title">
+              <h2 id="journey-title">Our Journey</h2>
+              <svg class="j-dots" viewBox="0 0 32 26" aria-hidden="true">
+                <circle cx="6" cy="3" r="2.6" />
+                <circle cx="14" cy="3" r="2.6" />
+                <circle cx="22" cy="3" r="2.6" />
+                <circle cx="3" cy="11" r="2.6" />
+                <circle cx="11" cy="11" r="2.6" />
+                <circle cx="19" cy="11" r="2.6" />
+                <circle cx="27" cy="11" r="2.6" />
+                <circle cx="6" cy="19" r="2.6" />
+                <circle cx="14" cy="19" r="2.6" />
+                <circle cx="22" cy="19" r="2.6" />
+              </svg>
+            </div>
+            <p class="j-intro">
+              From the first conversation to launch day and beyond, JBIWEBX
+              follows a clear process so your CMS, CRM, Shopify store or custom
+              web app is delivered on time and works the way your team does.
+            </p>
+          </header>
+
+          <div class="j-steps">
+            <svg
+              class="j-path"
+              viewBox="0 0 1450 400"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M30 56 C32 30 60 16 92 16 C150 16 190 40 224 62 C260 88 300 96 340 90 C420 78 470 40 540 14 C585 2 622 4 634 30 C636 40 634 48 634 56
+                   M634 114 C634 150 610 168 560 170 C520 172 480 160 440 164 C400 168 372 190 362 215 C358 226 355 234 355 241
+                   M355 299 C353 340 370 376 410 378 C470 380 520 340 560 336 C600 332 620 352 660 355 C710 358 740 322 770 306 C800 296 850 316 900 324 C930 330 950 332 955 315 C957 307 958 303 958 299"
+                fill="none"
+                stroke="rgba(240,150,150,0.7)"
+                stroke-width="1.3"
+                stroke-dasharray="9 7"
+                stroke-linecap="round"
+              />
+            </svg>
+
+            <div class="j-step s1">
+              <span class="j-num"><i></i><i></i><i></i><i></i>1</span>
+              <div class="j-txt">
+                <h3>Discover</h3>
+                <p>
+                  We study your workflow, goals and challenges to define exactly
+                  what your software needs.
+                </p>
+              </div>
+            </div>
+
+            <div class="j-step s2">
+              <span class="j-num"><i></i><i></i><i></i><i></i>2</span>
+              <div class="j-txt">
+                <h3>Plan &amp; Design</h3>
+                <p>
+                  We map the features, structure and UI so you see the full plan
+                  before any code is written.
+                </p>
+              </div>
+            </div>
+
+            <div class="j-step s3">
+              <span class="j-num"><i></i><i></i><i></i><i></i>3</span>
+              <div class="j-txt">
+                <h3>Develop</h3>
+                <p>
+                  We build your CMS, CRM, store or API integration with clean,
+                  secure and scalable code.
+                </p>
+              </div>
+            </div>
+
+            <div class="j-step s4">
+              <span class="j-num"><i></i><i></i><i></i><i></i>4</span>
+              <div class="j-txt">
+                <h3>Launch &amp; Support</h3>
+                <p>
+                  We test, deploy and stay with you after launch with updates,
+                  fixes and 24/7 support.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="achievements"
+        id="achievements"
+        aria-labelledby="ach-title"
+      >
+        <div class="wrap">
+          <div class="a-stage">
+            <header class="a-head">
+              <h2 id="ach-title">Our Achievements</h2>
+              <svg class="a-hdots" viewBox="0 0 32 26" aria-hidden="true">
+                <circle cx="6" cy="3" r="2.6" />
+                <circle cx="14" cy="3" r="2.6" />
+                <circle cx="22" cy="3" r="2.6" />
+                <circle cx="3" cy="11" r="2.6" />
+                <circle cx="11" cy="11" r="2.6" />
+                <circle cx="19" cy="11" r="2.6" />
+                <circle cx="27" cy="11" r="2.6" />
+                <circle cx="6" cy="19" r="2.6" />
+                <circle cx="14" cy="19" r="2.6" />
+                <circle cx="22" cy="19" r="2.6" />
+              </svg>
+            </header>
+
+            <div class="a-years" aria-hidden="true">
+              <span class="a-num n1">20</span>
+              <svg class="a-dots d1" viewBox="0 0 30 22">
+                <circle cx="6" cy="3" r="2.7" />
+                <circle cx="14" cy="3" r="2.7" />
+                <circle cx="22" cy="3" r="2.7" />
+                <circle cx="10" cy="11" r="2.7" />
+                <circle cx="18" cy="11" r="2.7" />
+                <circle cx="26" cy="11" r="2.7" />
+                <circle cx="4" cy="19" r="2.7" />
+                <circle cx="12" cy="19" r="2.7" />
+                <circle cx="20" cy="19" r="2.7" />
+              </svg>
+              <svg class="a-dots d2" viewBox="0 0 30 22">
+                <circle cx="8" cy="3" r="2.7" />
+                <circle cx="16" cy="3" r="2.7" />
+                <circle cx="24" cy="3" r="2.7" />
+                <circle cx="4" cy="11" r="2.7" />
+                <circle cx="12" cy="11" r="2.7" />
+                <circle cx="20" cy="11" r="2.7" />
+                <circle cx="10" cy="19" r="2.7" />
+                <circle cx="18" cy="19" r="2.7" />
+                <circle cx="26" cy="19" r="2.7" />
+              </svg>
+              <span class="a-num n2">26</span>
+            </div>
+
+            <p class="a-intro">
+              Over the years, we’ve turned ideas into reliable digital products that help businesses work smarter, serve their customers better, and grow with confidence.
+            </p>
+
+            <ul class="a-list">
+              <li class="a-item i1 active">
+                <span class="a-box"><i></i><i></i><i></i><i></i>1</span>
+                <div class="a-txt">
+                  <h3>Projects Delivered</h3>
+                  <p>
+                    From custom web applications and CRM platforms to e-commerce, inventory, and billing systems, we’ve delivered solutions built around real business needs.
+                  </p>
+                </div>
+              </li>
+              <li class="a-item i2">
+                <span class="a-box"><i></i><i></i><i></i><i></i>2</span>
+                <div class="a-txt"><h3>Industries & Businesses Served</h3></div>
+              </li>
+              <li class="a-item i3">
+                <span class="a-box"><i></i><i></i><i></i><i></i>3</span>
+                <div class="a-txt"><h3>Client-First Approach</h3></div>
+              </li>
+              <li class="a-item i4">
+                <span class="a-box"><i></i><i></i><i></i><i></i>4</span>
+                <div class="a-txt"><h3>Built for Long-Term Growth</h3></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+
     <button class="scroll-down" id="scrollDown" aria-label="Scroll down">
       <svg
         viewBox="0 0 24 24"
@@ -813,7 +1822,9 @@
         onScroll();
 
         scrollBtn.addEventListener("click", function () {
-          var next = document.getElementById("services");
+          var next =
+            document.getElementById("services") ||
+            document.getElementById("portfolio");
           var top = next
             ? next.getBoundingClientRect().top + window.scrollY
             : hero.offsetHeight;
