@@ -1841,6 +1841,205 @@
         }
       }
 
+      /* ============================================
+         FOOTER
+         ============================================ */
+      .footer {
+        position: relative;
+        background: transparent;
+      }
+      .ft-dash {
+        height: 1.5px;
+        background: repeating-linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.55) 0 18px,
+          transparent 18px 34px
+        );
+      }
+      .ft-inner {
+        max-width: 1360px;
+        margin: 0 auto;
+        padding: 0 clamp(20px, 5.4vw, 86px);
+      }
+      .ft-main {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto auto;
+        column-gap: clamp(40px, 7vw, 120px);
+        padding: clamp(36px, 4.5vw, 60px) 0 clamp(36px, 4.5vw, 52px);
+      }
+      .ft-logo {
+        display: inline-block;
+      }
+      .ft-logo img {
+        display: block;
+        width: clamp(130px, 13vw, 170px);
+        height: auto;
+      }
+      .ft-desc {
+        margin-top: 22px;
+        max-width: 800px;
+        font-size: clamp(14px, 1.15vw, 16px);
+        line-height: 1.7;
+        font-weight: 400;
+        color: #e4dfdf;
+      }
+      .ft-contact {
+        list-style: none;
+        margin-top: 26px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px clamp(24px, 3.4vw, 56px);
+      }
+      .ft-contact li {
+        position: relative;
+        padding-left: 18px;
+        font-size: clamp(14px, 1.2vw, 16px);
+        font-weight: 400;
+        color: #fff;
+      }
+      .ft-contact li::before {
+        content: "";
+        position: absolute;
+        left: 2px;
+        top: 50%;
+        width: 4px;
+        height: 4px;
+        margin-top: -2px;
+        border-radius: 50%;
+        background: #fff;
+      }
+      .ft-contact a {
+        transition: color 0.25s;
+      }
+      .ft-contact a:hover {
+        color: var(--red);
+      }
+      .ft-social {
+        display: inline-flex;
+        align-items: center;
+        gap: clamp(16px, 2vw, 24px);
+        margin-top: 26px;
+        padding: 14px 22px;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+      }
+      .ft-social a {
+        font-size: 20px;
+        line-height: 1;
+        color: #e9e4e4;
+        transition:
+          color 0.25s,
+          transform 0.25s;
+      }
+      .ft-social a:hover {
+        color: var(--red);
+        transform: translateY(-2px);
+      }
+      .ft-h {
+        position: relative;
+        display: inline-block;
+        padding: 6px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        font-size: clamp(18px, 1.7vw, 24px);
+        font-weight: 500;
+        line-height: 1.2;
+        color: #fff;
+      }
+      .ft-h i {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #fff;
+      }
+      .ft-h i:nth-child(1) {
+        top: -3px;
+        left: -3px;
+      }
+      .ft-h i:nth-child(2) {
+        top: -3px;
+        right: -3px;
+      }
+      .ft-h i:nth-child(3) {
+        bottom: -3px;
+        left: -3px;
+      }
+      .ft-h i:nth-child(4) {
+        bottom: -3px;
+        right: -3px;
+      }
+      .ft-links {
+        list-style: none;
+        margin-top: 34px;
+        display: grid;
+        gap: 26px;
+      }
+      .ft-links a {
+        font-size: clamp(14px, 1.2vw, 16px);
+        font-weight: 400;
+        color: #f1eded;
+        transition: color 0.25s;
+      }
+      .ft-links a:hover {
+        color: var(--red);
+      }
+      .ft-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 14px 24px;
+        padding: 26px 0 30px;
+        font-size: clamp(13px, 1.15vw, 16px);
+        color: #e4dfdf;
+      }
+      .ft-legal {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .ft-legal li + li::before {
+        content: "";
+        display: inline-block;
+        width: 4px;
+        height: 4px;
+        margin-right: 14px;
+        vertical-align: middle;
+        border-radius: 50%;
+        background: #fff;
+      }
+      .ft-legal a {
+        transition: color 0.25s;
+      }
+      .ft-legal a:hover {
+        color: var(--red);
+      }
+
+      @media (max-width: 960px) {
+        .ft-main {
+          grid-template-columns: 1fr 1fr;
+          row-gap: 40px;
+        }
+        .ft-brand {
+          grid-column: 1 / -1;
+        }
+        .ft-links {
+          margin-top: 26px;
+          gap: 18px;
+        }
+      }
+      @media (max-width: 560px) {
+        .ft-contact {
+          flex-direction: column;
+        }
+        .ft-bottom {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+
       /* ALL TEXT = Space Grotesk (Font Awesome icons excluded) */
       body,
       button,
@@ -1848,7 +2047,8 @@
       .journey :not(i),
       .achievements :not(i),
       .expertise :not(i),
-      .contact :not(i) {
+      .contact :not(i),
+      .footer :not(i) {
         font-family: "Space Grotesk", sans-serif !important;
       }
     </style>
@@ -2443,11 +2643,75 @@
 
             <!-- Avatar image: put your file path in src -->
             <div class="ct-visual" aria-hidden="true">
-              <img src="images/boy1.webp" alt="" onerror="this.style.display='none'" />
+              <img src="images/boy1.webp " alt="" onerror="this.style.display='none'" />
             </div>
           </div>
         </div>
       </section>
+
+      <footer class="footer" id="footer">
+        <div class="ft-dash"></div>
+        <div class="ft-inner">
+          <div class="ft-main">
+            <div class="ft-brand">
+              <a href="#home" class="ft-logo" aria-label="JBIWEBX">
+                <img src="images/webx.webp" alt="JBIWEBX Logo" />
+              </a>
+              <p class="ft-desc">
+                JBIWEBX designs and ships custom web applications, content
+                management systems, and CRM platforms built around how your
+                team actually works.
+              </p>
+              <ul class="ft-contact">
+                <li><a href="mailto:info@jbiwebx.com">info@jbiwebx.com</a></li>
+                <li><a href="https://wa.me/923083401608">+923083401608</a></li>
+                <li>Gulshan-e-Iqbal, Karachi</li>
+              </ul>
+              <div class="ft-social">
+                <a href="#" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://wa.me/923083401608" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+              </div>
+            </div>
+
+            <nav class="ft-col" aria-label="Services">
+              <h4 class="ft-h"><i></i><i></i><i></i><i></i>Services</h4>
+              <ul class="ft-links">
+                <li><a href="#services">CMS Development</a></li>
+                <li><a href="#services">CRM Development</a></li>
+                <li><a href="#services">E-commerce Development</a></li>
+                <li><a href="#services">Shopify Development</a></li>
+                <li><a href="#services">Inventory System</a></li>
+                <li><a href="#services">POS &amp; Billing System</a></li>
+              </ul>
+            </nav>
+
+            <nav class="ft-col" aria-label="Quick links">
+              <h4 class="ft-h"><i></i><i></i><i></i><i></i>Quick Links</h4>
+              <ul class="ft-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#journey">Journey</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#contact">Contact</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+        <div class="ft-dash"></div>
+        <div class="ft-inner">
+          <div class="ft-bottom">
+            <ul class="ft-legal">
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Disclaimer</a></li>
+            </ul>
+            <p>Copyright © 2026 JBIWEBX. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
 
     <button class="scroll-down" id="scrollDown" aria-label="Scroll down">
