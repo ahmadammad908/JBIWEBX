@@ -1783,6 +1783,15 @@
       .ct-status.ok {
         color: #7be0a0;
       }
+      .ct-status.err {
+        color: #ff7b84;
+      }
+      .ct-submit:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+      }
 
       /* AVATAR (image placeholder) */
       .ct-visual {
@@ -2608,7 +2617,8 @@
                 store or custom web app.
               </p>
 
-              <form class="ct-form" id="contactForm" novalidate>
+              <form class="ct-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+                <input type="hidden" name="access_key" value="9c669ac8-6f09-4880-97e4-118e7c6bab4e" />
                 <div class="ct-field">
                   <input type="text" name="name" placeholder="Name" aria-label="Name" autocomplete="name" required />
                 </div>
@@ -2643,7 +2653,7 @@
 
             <!-- Avatar image: put your file path in src -->
             <div class="ct-visual" aria-hidden="true">
-              <img src="images/boy1.webp " alt="" onerror="this.style.display='none'" />
+              <img src="images/boy1.webp" alt="" onerror="this.style.display='none'" />
             </div>
           </div>
         </div>
@@ -2664,12 +2674,12 @@
               </p>
               <ul class="ft-contact">
                 <li><a href="mailto:info@jbiwebx.com">info@jbiwebx.com</a></li>
-                <li><a href="https://wa.me/923083401608">+923083401608</a></li>
-                <li>Gulshan-e-Iqbal, Karachi</li>
+                <li><a href="https://wa.me/923083401608" target="_blank">+92 3083401608</a></li>
+                <li>Gulshan Iqbal, Karachi</li>
               </ul>
               <div class="ft-social">
-                <a href="#" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
-                <a href="https://wa.me/923083401608" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://t.me/jbiwebx" target="_blank" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://wa.me/923083401608" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
                 <a href="#" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
                 <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
               </div>
@@ -2844,27 +2854,48 @@
         spy();
       })();
 
-      /* CONTACT FORM */
+      /* CONTACT FORM (Web3Forms) */
       (function () {
         var form = document.getElementById("contactForm");
         var status = document.getElementById("ctStatus");
         if (!form) return;
+        var btn = form.querySelector(".ct-submit");
 
         form.addEventListener("submit", function (e) {
           e.preventDefault();
-          status.classList.remove("ok");
+          status.className = "ct-status";
           if (!form.checkValidity()) {
             form.reportValidity();
             return;
           }
-          var data = Object.fromEntries(new FormData(form).entries());
-          /* TODO: send `data` to your backend here, e.g.
-             fetch("/api/contact", { method: "POST",
-               headers: { "Content-Type": "application/json" },
-               body: JSON.stringify(data) }) */
-          status.textContent = "Thanks! We’ll get back to you soon.";
-          status.classList.add("ok");
-          form.reset();
+
+          btn.disabled = true;
+          status.textContent = "Sending...";
+
+          fetch(form.action, {
+            method: "POST",
+            headers: { Accept: "application/json" },
+            body: new FormData(form),
+          })
+            .then(function (res) {
+              return res.json();
+            })
+            .then(function (data) {
+              if (data.success) {
+                status.textContent = "Thanks! We’ll get back to you soon.";
+                status.className = "ct-status ok";
+                form.reset();
+              } else {
+                throw new Error(data.message || "Something went wrong.");
+              }
+            })
+            .catch(function () {
+              status.textContent = "Something went wrong. Please try again.";
+              status.className = "ct-status err";
+            })
+            .finally(function () {
+              btn.disabled = false;
+            });
         });
       })();
     </script>
