@@ -2,12 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <title>Stygar</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&family=Comfortaa:wght@400;500;600;700&family=Poppins:wght@300;400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <!-- Font Awesome 6.4.0 -->
@@ -37,6 +37,12 @@
       html,
       body {
         background: var(--bg);
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      section[id] {
+        scroll-margin-top: 60px;
       }
       body {
         font-family: "Space Grotesk", sans-serif;
@@ -497,8 +503,6 @@
 
       /* ============================================
          SHARED PAGE BACKGROUND WRAPPER
-         #services, #journey and #achievements live inside
-         this, so there is no seam/line between them.
          ============================================ */
       .page-bg {
         position: relative;
@@ -530,7 +534,7 @@
         position: relative;
         padding: clamp(60px, 7vw, 90px) var(--p-pad) clamp(40px, 5vw, 60px);
         font-family: "Poppins", sans-serif;
-        background: transparent; /* <-- inherit from .page-bg */
+        background: transparent;
       }
       .projects .wrap {
         max-width: 1240px;
@@ -716,14 +720,12 @@
 
       /* ============================================
          OUR JOURNEY (#journey)
-         No background here — it inherits from .page-bg,
-         so there is no visible seam between sections.
          ============================================ */
       .journey {
         position: relative;
         padding: clamp(60px, 7vw, 90px) clamp(20px, 3.1vw, 40px);
         font-family: "Poppins", sans-serif;
-        background: transparent; /* <-- KEY FIX */
+        background: transparent;
       }
       .journey .wrap {
         max-width: 1240px;
@@ -881,9 +883,6 @@
 
       /* ============================================
          OUR ACHIEVEMENTS (#achievements)
-         Transparent background: inherits .page-bg.
-         Everything scales with --u (1 unit = 1px of the
-         1700px-wide reference design).
          ============================================ */
       .achievements {
         position: relative;
@@ -926,7 +925,7 @@
         flex: none;
       }
 
-      /* big 20 / 25 */
+      /* big 20 / 26 */
       .achievements .a-years {
         position: absolute;
         inset: 0;
@@ -1163,7 +1162,6 @@
 
       /* ============================================
          OUR EXPERTISE (#expertise)
-         Transparent background: inherits .page-bg
          ============================================ */
       .expertise {
         position: relative;
@@ -1610,12 +1608,248 @@
         * {
           transition: none !important;
         }
+        html {
+          scroll-behavior: auto;
+        }
         .scroll-down,
         .scroll-down::before,
         .scroll-down::after,
         .scroll-down svg {
           animation: none;
         }
+      }
+
+      /* ============================================
+         CONTACT (#contact)
+         ============================================ */
+      .contact {
+        position: relative;
+        padding: clamp(60px, 7vw, 90px) clamp(20px, 3.1vw, 40px);
+        background: transparent;
+      }
+      .contact .wrap {
+        max-width: 1240px;
+        margin: 0 auto;
+      }
+      .ct-card {
+        position: relative;
+        margin-top: clamp(40px, 7vw, 90px);
+        padding: clamp(28px, 4vw, 48px) clamp(22px, 3.4vw, 40px);
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        border-radius: 28px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.07) 0%,
+          rgba(255, 255, 255, 0.03) 100%
+        );
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+      }
+      .ct-content {
+        position: relative;
+        z-index: 2;
+        width: min(100%, 600px);
+      }
+      .ct-content h2 {
+        font-size: clamp(32px, 4.6vw, 56px);
+        font-weight: 500;
+        line-height: 1.15;
+        letter-spacing: 0.2px;
+        color: #fff;
+      }
+      .contact .hl {
+        border-color: rgba(255, 255, 255, 0.2);
+        margin: 0;
+      }
+      .ct-desc {
+        margin-top: clamp(16px, 2vw, 22px);
+        max-width: 520px;
+        font-size: clamp(14px, 1.3vw, 16px);
+        line-height: 1.7;
+        font-weight: 300;
+        color: var(--muted);
+      }
+      .ct-form {
+        margin-top: clamp(22px, 3vw, 32px);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .ct-field {
+        min-width: 0;
+      }
+      .ct-field.full {
+        grid-column: 1 / -1;
+      }
+      .ct-form input,
+      .ct-form select,
+      .ct-form textarea {
+        width: 100%;
+        height: 50px;
+        padding: 0 22px;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        border-radius: 999px;
+        background-color: rgba(15, 11, 12, 0.35);
+        color: #fff;
+        font-family: inherit;
+        font-size: 15px;
+        font-weight: 400;
+        outline: none;
+        transition:
+          border-color 0.25s,
+          box-shadow 0.25s;
+      }
+      .ct-form textarea {
+        height: auto;
+        min-height: 120px;
+        padding: 14px 22px;
+        border-radius: 22px;
+        resize: vertical;
+        line-height: 1.5;
+      }
+      .ct-form select {
+        appearance: none;
+        -webkit-appearance: none;
+        cursor: pointer;
+        padding-right: 46px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23d9d4d4' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 20px center;
+      }
+      .ct-form select:invalid {
+        color: #d9d4d4;
+      }
+      .ct-form select option {
+        background: #1a0d10;
+        color: #fff;
+      }
+      .ct-form input::placeholder,
+      .ct-form textarea::placeholder {
+        color: #d9d4d4;
+        opacity: 0.8;
+      }
+      .ct-form input:focus,
+      .ct-form select:focus,
+      .ct-form textarea:focus {
+        border-color: var(--red);
+        box-shadow: 0 0 0 3px rgba(209, 15, 28, 0.18);
+      }
+      .ct-actions {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .ct-submit {
+        display: inline-flex;
+        align-items: center;
+        gap: 16px;
+        height: 50px;
+        padding: 0 7px 0 28px;
+        border-radius: 999px;
+        background: var(--red);
+        color: #fff;
+        font-size: 16px;
+        font-weight: 500;
+        transition:
+          background 0.25s,
+          transform 0.25s,
+          box-shadow 0.25s;
+      }
+      .ct-submit .arr {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.2);
+        font-size: 15px;
+        transition: transform 0.25s;
+      }
+      .ct-submit:hover {
+        background: var(--red-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(209, 15, 28, 0.35);
+      }
+      .ct-submit:hover .arr {
+        transform: translateX(3px);
+      }
+      .ct-status {
+        font-size: 14px;
+        color: var(--muted);
+      }
+      .ct-status.ok {
+        color: #7be0a0;
+      }
+
+      /* AVATAR (image placeholder) */
+      .ct-visual {
+        position: absolute;
+        z-index: 1;
+        right: clamp(30px, 7%, 110px);
+        bottom: 28px;
+        height: calc(100% + 80px);
+        max-height: 640px;
+        pointer-events: none;
+      }
+      .ct-visual img {
+        display: block;
+        height: 100%;
+        width: auto;
+        filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.35));
+      }
+
+      @media (max-width: 1100px) {
+        .ct-content {
+          width: 58%;
+        }
+        .ct-visual {
+          right: 2%;
+        }
+      }
+      @media (max-width: 960px) {
+        .ct-card {
+          margin-top: 24px;
+        }
+        .ct-content {
+          width: 100%;
+        }
+        .ct-visual {
+          position: static;
+          display: flex;
+          justify-content: center;
+          height: 280px;
+          max-height: none;
+          margin-top: 28px;
+        }
+      }
+      @media (max-width: 560px) {
+        .ct-card {
+          border-radius: 22px;
+        }
+        .ct-form {
+          grid-template-columns: 1fr;
+        }
+        .ct-submit {
+          width: 100%;
+          justify-content: space-between;
+        }
+        .ct-visual {
+          height: 240px;
+        }
+      }
+
+      /* ALL TEXT = Space Grotesk (Font Awesome icons excluded) */
+      body,
+      button,
+      .projects :not(i),
+      .journey :not(i),
+      .achievements :not(i),
+      .expertise :not(i),
+      .contact :not(i) {
+        font-family: "Space Grotesk", sans-serif !important;
       }
     </style>
   </head>
@@ -1629,8 +1863,9 @@
         <ul class="nav-links" id="navLinks">
           <li><a href="#home" class="active">Home</a></li>
           <li><a href="#services">Services</a></li>
-          <li><a href="#portfolio">Portfilio</a></li>
-          <li><a href="#about">About</a></li>
+          <li><a href="#journey">Journey</a></li>
+          <li><a href="#achievements">Achievements</a></li>
+          <li><a href="#expertise">Expertise</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
 
@@ -1659,7 +1894,7 @@
           </p>
           <div class="actions">
             <a href="#contact" class="btn btn-main">Start a Project</a>
-            <a href="#portfolio" class="link"
+            <a href="#services" class="link"
               >See Our Work <span>&rarr;</span></a
             >
           </div>
@@ -1714,10 +1949,6 @@
       </div>
     </section>
 
-    <!-- ============================================
-         Shared background wrapper for Services + Journey + Achievements + Expertise
-         Fixes the ugly seam/line between the sections.
-         ============================================ -->
     <div class="page-bg">
       <section class="projects" id="services" aria-labelledby="projects-title">
         <div class="wrap">
@@ -2162,6 +2393,61 @@
           </div>
         </div>
       </section>
+
+      <section class="contact" id="contact" aria-labelledby="ct-title">
+        <div class="wrap">
+          <div class="ct-card">
+            <div class="ct-content">
+              <h2 id="ct-title">
+                Let’s Build Something
+                <span class="hl"><i></i><i></i><i></i><i></i>Amazing</span>
+              </h2>
+              <p class="ct-desc">
+                Tell us about your idea and we’ll get back to you within 24
+                hours with a clear plan and next steps for your CRM, CMS,
+                store or custom web app.
+              </p>
+
+              <form class="ct-form" id="contactForm" novalidate>
+                <div class="ct-field">
+                  <input type="text" name="name" placeholder="Name" aria-label="Name" autocomplete="name" required />
+                </div>
+                <div class="ct-field">
+                  <input type="email" name="email" placeholder="Email" aria-label="Email" autocomplete="email" required />
+                </div>
+                <div class="ct-field">
+                  <input type="tel" name="phone" placeholder="Phone (optional)" aria-label="Phone (optional)" autocomplete="tel" />
+                </div>
+                <div class="ct-field">
+                  <select name="projectType" aria-label="Project type" required>
+                    <option value="" disabled selected hidden>Project type</option>
+                    <option value="CRM">CRM</option>
+                    <option value="CMS">CMS</option>
+                    <option value="Web Application">Web Application</option>
+                    <option value="Ecommerce">Ecommerce</option>
+                    <option value="Not sure yet">Not sure yet</option>
+                  </select>
+                </div>
+                <div class="ct-field full">
+                  <textarea name="details" placeholder="Project details" aria-label="Project details" rows="4" required></textarea>
+                </div>
+                <div class="ct-actions">
+                  <button type="submit" class="ct-submit">
+                    Send Message
+                    <span class="arr" aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></span>
+                  </button>
+                  <span class="ct-status" id="ctStatus" role="status" aria-live="polite"></span>
+                </div>
+              </form>
+            </div>
+
+            <!-- Avatar image: put your file path in src -->
+            <div class="ct-visual" aria-hidden="true">
+              <img src="images/boy1.webp" alt="" onerror="this.style.display='none'" />
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
 
     <button class="scroll-down" id="scrollDown" aria-label="Scroll down">
@@ -2252,10 +2538,70 @@
         items.forEach(function (el, i) {
           el.addEventListener("click", function () {
             setActive(i);
+            /* mobile/tablet: panel sits below the list, so scroll to it smoothly */
+            if (window.innerWidth <= 960) {
+              setTimeout(function () {
+                words[i].scrollIntoView({ behavior: "smooth", block: "center" });
+              }, 60);
+            }
           });
         });
 
         setActive(0);
+      })();
+
+      /* NAVBAR ACTIVE LINK ON SCROLL */
+      (function () {
+        var links = document.querySelectorAll("#navLinks a");
+        var map = [];
+        links.forEach(function (a) {
+          var s = document.querySelector(a.getAttribute("href"));
+          if (s) map.push({ a: a, s: s });
+        });
+
+        function spy() {
+          var y = window.scrollY + window.innerHeight * 0.35;
+          var cur = map[0];
+          map.forEach(function (m) {
+            if (m.s.getBoundingClientRect().top + window.scrollY <= y) cur = m;
+          });
+          if (
+            window.innerHeight + window.scrollY >=
+            document.body.scrollHeight - 4
+          ) {
+            cur = map[map.length - 1];
+          }
+          links.forEach(function (l) {
+            l.classList.toggle("active", l === cur.a);
+          });
+        }
+
+        window.addEventListener("scroll", spy, { passive: true });
+        spy();
+      })();
+
+      /* CONTACT FORM */
+      (function () {
+        var form = document.getElementById("contactForm");
+        var status = document.getElementById("ctStatus");
+        if (!form) return;
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          status.classList.remove("ok");
+          if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+          }
+          var data = Object.fromEntries(new FormData(form).entries());
+          /* TODO: send `data` to your backend here, e.g.
+             fetch("/api/contact", { method: "POST",
+               headers: { "Content-Type": "application/json" },
+               body: JSON.stringify(data) }) */
+          status.textContent = "Thanks! We’ll get back to you soon.";
+          status.classList.add("ok");
+          form.reset();
+        });
       })();
     </script>
   </body>
